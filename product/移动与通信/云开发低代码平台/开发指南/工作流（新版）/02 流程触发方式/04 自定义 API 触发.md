@@ -10,8 +10,8 @@
  >
  <img src = "https://qcloudimg.tencent-cloud.cn/raw/75c3e4a1967101fe208f29d5eff6380a.png" style = "width:80%"> 
 2. **配置自定义 API **。
- <img src = "https://qcloudimg.tencent-cloud.cn/raw/d1a2b839c2fd084f70c1685d18f46c00.png" style = "width:80%"> 
-**按照下面的代码即可触发流程，可以通过方法测试验证，验证后通过“出参映射”可以快速配置 API 的出参。**
+ <img src = "https://qcloudimg.tencent-cloud.cn/raw/6b7f88cce08d7895dce76d3e7b592993.png" style = "width:80%"> 
+**参考下面的代码配置APs和工作流相关信息即可触发流程，可以通过方法测试验证，验证后通过“出参映射”可以快速配置 API 的出参。**
 <dx-codeblock>
 :::  js
 /**
@@ -35,16 +35,18 @@ module.exports = async function (params, context) {
   const response = await context.callWorkflow({action: 'StartProcessWithParams', data: {
     TriggerType: 6,
     ConnectorParam: {
-      ConnectorName: "startflow_0iivqwe",
-      FunctionName: "method_5b12595a75119"
+      ConnectorName: "startflow_n17f6cw",
+      FunctionName: "method_65d91583fc619"
     },
-    ProcessKey: "flow_012",
+    ProcessKey: "flow_ttmzhe5",
     StartParams: [
       {
-        "paramCode": "165708798187xxxxxx",
-        "fieldType": "string",
-        "entityCode": "",
-        "value": "test data"
+        "name":"form_test3",
+        "paramCode": "168049347798818754",
+        "fieldType": "object",
+        "fieldValueMap":{
+          "_id":'50b8a5676425824e001b06661838b821',
+          "xh":'1311311236743'
       }
     ],
     ExtraUserInfo: {
@@ -56,6 +58,20 @@ module.exports = async function (params, context) {
 };
 :::
 </dx-codeblock>
+其中：
+- ConnectorName：触发的APIs标识；
+ <img src = "https://qcloudimg.tencent-cloud.cn/raw/ae17cf5f8b161a03f2100c8a674cf3dc.png" style = "width:80%"> 
+- FunctionName：触发的方法标识；
+ <img src = "https://qcloudimg.tencent-cloud.cn/raw/aaa49c25f8ac248657ded743313627c5.png" style = "width:80%"> 
+- ProcessKey：流程的唯一标识；
+ <img src = "https://qcloudimg.tencent-cloud.cn/raw/231a762f47775a062f1e5891e7a5718e.png" style = "width:80%"> 
+- StartParams中：
+  - name:开始节点变量名称；
+  - paramCode:开始节点变量标识（获取方式参考以下截图示例，对照接口出参中rightId字段内容）
+  - fieldType：开始节点变量类型
+  - fieldValueMap:{_id: 数据模型记录ID，数据模型字段key-value}
+ <img src = "https://qcloudimg.tencent-cloud.cn/raw/c5cbf2859477601485fa98cba3fbb140.png" style = "width:80%"> 
+ <img src = "https://qcloudimg.tencent-cloud.cn/raw/69f12866306f62ee952f83bb90a5dc82.png" style = "width:80%"> 
 3. **应用中使用自定义 API **
 自定义 API 发布后，在应用编辑器中可以配置表单容器。
  <img src = "https://qcloudimg.tencent-cloud.cn/raw/d9743711ae8f33dc67a037413af68b21.png" style = "width:80%"> 
